@@ -1,0 +1,24 @@
+<select id={{this.elementId}} ...attributes {{on 'change' this._onSelect}}>
+  {{#if @default}}
+    <Select::Option @value="">
+      {{@default}}
+    </Select::Option>
+  {{/if}}
+  {{#if @objects}}
+    {{#each @objects as |object|}}
+      <Select::Option
+        @value={{object}}
+        @selected={{@value}}
+        @selectorName={{@selectorName}}
+      >
+        {{#if @selectorValue}}
+          {{get object @selectorValue}}
+        {{else}}
+          {{object}}
+        {{/if}}
+      </Select::Option>
+    {{/each}}
+  {{else}}
+    {{yield}}
+  {{/if}}
+</select>
